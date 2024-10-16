@@ -1,0 +1,20 @@
+<h1>Users Search</h1>
+  <form [formGroup]="searchConfigForm">
+    <label>User Name
+      <input formControlName="userName" placeholder="Type User Name" />
+    </label>
+    <label>Results Limit
+      <select formControlName="resultLimit">
+        <option [value]="1">1</option>
+        <option [value]="3">3</option>
+        <option [value]="5">5</option>
+      </select>
+    </label>
+  </form>
+  <p>
+    Found <b>{{ (users$ | async)?.length }}</b> Users
+  </p>
+  <ul>
+    <li class="card" *ngFor="let user of users$ | async; trackBy:identifyUser">
+      {{ user.name }} </li>
+  </ul>
